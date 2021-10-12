@@ -3,7 +3,6 @@
 
 
 - name: Init Kubernetes cluster
-  when: reset_cluster is succeeded
   shell: |
     kubeadm init \
       --control-plane-endpoint "{{ cp_endpoint }}" \
