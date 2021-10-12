@@ -46,7 +46,6 @@
     content: |
       {
         "exec-opts": ["native.cgroupdriver=systemd"]
-        "live-restore": true
       }
   become: true
 
