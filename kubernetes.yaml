@@ -7,3 +7,4 @@
     - init_configuration
     - install_docker
     - install_kubernetes
+    - cluster_config/first_master
