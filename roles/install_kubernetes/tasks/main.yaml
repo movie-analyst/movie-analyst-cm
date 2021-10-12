@@ -38,10 +38,6 @@
     state: present
   become: true
 
-- name: Prevent python from being upgraded
-  dpkg_selections:
-    name:
-    - kubelet
-    - kubeadm
-    - kubectl
-    selection: hold
+- name: Prevent packages from being upgraded
+  shell: apt-mark hold kubelet kubeadm kubectl
+  become: true
