@@ -46,11 +46,12 @@
     content: |
       {
         "exec-opts": ["native.cgroupdriver=systemd"]
+        "live-restore": true
       }
   become: true
 
 - name: Restart service docker
   service:
     name: docker
-    state: restarted
+    state: reloaded
   become: true
