@@ -1,8 +1,12 @@
 ---
 
-
+- name: Reset Kubernetes component
+  shell: kubeadm reset --force
+  become: true
+  register: reset_cluster
 
 - name: Init Kubernetes cluster
+  when: reset_cluster is succeeded
   shell: |
     kubeadm init \
       --control-plane-endpoint "{{ cp_endpoint }}" \
