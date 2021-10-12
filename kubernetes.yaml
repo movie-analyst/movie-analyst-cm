@@ -1,0 +1,9 @@
+---
+- hosts: prueba
+  gather_facts: true
+  become: yes
+  become_method: sudo
+  roles:
+    - init_configuration
+    - install_docker
+    - install_kubernetes

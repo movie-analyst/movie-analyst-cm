@@ -1,0 +1,47 @@
+---
+- name: Update repositorys
+  apt: 
+    update_cache: yes 
+    force_apt_get: yes
+  become: true
+
+- name: Install required packages
+  apt:
+    name:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    autoclean: yes
+    update_cache: yes
+  become: true
+
+- name: Add k8's official key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+  become: true
+
+- name:  Add k8's Repository
+  apt_repository:
+    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+  become: true
+
+- name: Install k8's packages 
+  apt:
+    update_cache: yes
+    name:
+    - kubelet=1.21.0-00
+    - kubeadm=1.21.0-00
+    - kubectl=1.21.0-00
+    autoclean: yes
+    state: present
+  become: true
+
+- name: Prevent python from being upgraded
+  dpkg_selections:
+    name:
+    - kubelet
+    - kubeadm
+    - kubectl
+    selection: hold
