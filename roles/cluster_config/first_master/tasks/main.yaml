@@ -11,7 +11,7 @@
     kubeadm init \
       --control-plane-endpoint "{{ cp_endpoint }}" \
       --upload-certs \
-      --pod-network-cidr "{{ pod_cidr }}" | tee result
+      --pod-network-cidr "{{ pod_cidr }}" 2>&1 | tee result
   register: init_cluster
 
 - name : Get kubeadm join control node
