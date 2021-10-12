@@ -1,7 +1,7 @@
 ---
 
 - name: Reset Kubernetes component
-  shell: kubeadm reset
+  shell: kubeadm reset --force
   become: true
   register: reset_cluster
 
