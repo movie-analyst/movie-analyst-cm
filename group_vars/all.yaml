@@ -1,6 +1,6 @@
 
 pod_cidr: "10.244.0.0/16"
 
-cp_endpoint: "13.92.126.14:6443"
+cp_endpoint: "34.121.161.162:6443"
 
 kubeadmin_config: /etc/kubernetes/admin.conf
