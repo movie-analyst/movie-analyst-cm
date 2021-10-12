@@ -40,13 +40,13 @@
   become: true
 
 - name: Configure docker
-    copy:
-      mode: 0644
-      dest: /etc/docker/daemon.json
-      content: |
-        {
-          "exec-opts": ["native.cgroupdriver=systemd"]
-        }
+  copy:
+    mode: 0644
+    dest: /etc/docker/daemon.json
+    content: |
+      {
+        "exec-opts": ["native.cgroupdriver=systemd"]
+      }
   become: true
 
 - name: Restart service docker
