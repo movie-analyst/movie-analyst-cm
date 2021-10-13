@@ -1,0 +1,38 @@
+---
+
+- name: Reset Kubernetes component
+  shell: kubeadm reset --force
+  become: true
+  register: reset_cluster
+
+- name: Init Kubernetes cluster
+  when: reset_cluster is succeeded
+  shell: |
+    kubeadm init \
+      --control-plane-endpoint "{{ cp_endpoint }}" \
+      --upload-certs \
+      --pod-network-cidr "{{ pod_cidr }}" 2>&1 | tee result
+  register: init_cluster
+
+- name : Get kubeadm join control node
+  when: init_cluster is succeeded
+  shell: cat result | grep -A 2 'kubeadm join' | head -n 3 | tee joincontroller
+  register: joincontroller
+
+- name : Get kubeadm join worker node
+  when: init_cluster is succeeded
+  shell: cat result | grep -A 2 'kubeadm join' | tail -n 2 | tee joinworker
+  register: joinworker
+
+- name: Create Kubernetes config directory
+  file:
+    path: ".kube/"
+    state: directory
+
+- name: Copy admin.conf to Home directory
+  when: init_cluster is succeeded
+  copy:
+    src: "{{ kubeadmin_config }}"
+    dest: ".kube/config"
+    mode: 0755
+    remote_src: true
