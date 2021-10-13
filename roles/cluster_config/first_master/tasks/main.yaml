@@ -31,12 +31,12 @@
   register: join
 
 - name: Generate certificates
-  shell: kubeadm init phase upload-certs --upload-certs
+  shell: kubeadm init phase upload-certs --upload-certs 
   register: certificate
 
 - name: Check certificate
-  shell: echo "{{ certificate }}" | tee verify
-  
+  shell: echo "{{ certificate }}" | tail -1 | tee verify
+
 
 - name: "Copy join file to ansible server"
   fetch:
