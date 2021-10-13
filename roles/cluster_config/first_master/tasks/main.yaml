@@ -33,6 +33,7 @@
     flat: yes
   run_once: yes
   ignore_errors: yes
+  become: false
 
 - name: "Copy joinworker to ansible server"
   fetch:
@@ -41,3 +42,4 @@
     flat: yes
   run_once: yes
   ignore_errors: yes
+  become: false
