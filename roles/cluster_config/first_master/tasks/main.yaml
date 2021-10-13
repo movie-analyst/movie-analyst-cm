@@ -18,10 +18,10 @@
     enabled: yes
   register: started_kubelet
 
-- name: "Copy config file"
+- name: "Copy config file to ansible server"
   fetch:
     src: /etc/kubernetes/admin.conf 
-    dest: "{{ lookup('env', 'HOME') }}/.kube/config"
+    dest: "{{ lookup('env', 'HOME') }}/config"
     flat: yes
   run_once: yes
   ignore_errors: yes
