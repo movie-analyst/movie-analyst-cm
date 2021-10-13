@@ -27,7 +27,16 @@
   ignore_errors: yes
 
 - name: Generate join command
-  shell: kubeadm token create --print-join-command | tee join
+  shell: kubeadm token create --print-join-command
+  register: join
+
+- name: Generate certificates
+  shell: kubeadm init phase upload-certs --upload-certs
+  register: certificate
+
+- name: Check certificate
+  shell: echo "{{ certificate }}" | tee verify
+  
 
 - name: "Copy join file to ansible server"
   fetch:
