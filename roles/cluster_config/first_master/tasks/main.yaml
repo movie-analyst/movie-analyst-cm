@@ -34,7 +34,7 @@
   when: join is succeeded
   copy:
     content: "{{ join.stdout }}"
-    dest: "/var/kubernetes/join"
+    dest: "join"
 
 - name: Generate certificates
   shell: kubeadm init phase upload-certs --upload-certs | tail -1 
@@ -44,4 +44,4 @@
   when: certificate is succeeded
   copy:
     content: "{{ certificate.stdout }}"
-    dest: "/var/kubernetes/certificate"
+    dest: "certificate"
