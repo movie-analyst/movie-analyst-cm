@@ -26,19 +26,13 @@
   run_once: yes
   ignore_errors: yes
 
-- name: "Copy join controller file to ansible server"
-  fetch:
-    src: ~/joincontroller
-    dest: "{{ lookup('env', 'HOME') }}/joincontroller"
-    flat: yes
-  run_once: yes
-  ignore_errors: yes
-  become: false
+- name: Generate join command
+  shell: kubeadm token create --print-join-command | tee join
 
-- name: "Copy joinworker to ansible server"
+- name: "Copy join file to ansible server"
   fetch:
-    src: ~/joinworker
-    dest: "{{ lookup('env', 'HOME') }}/joinworker"
+    src: ~/join
+    dest: "{{ lookup('env', 'HOME') }}/join"
     flat: yes
   run_once: yes
   ignore_errors: yes

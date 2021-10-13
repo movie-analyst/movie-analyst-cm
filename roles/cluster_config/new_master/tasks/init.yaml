@@ -2,10 +2,10 @@
 
 - name: Copy joincontroller to the controller
   copy:
-    src: "~/joincontroller"
-    dest: "joincontroller"
+    src: "~/join"
+    dest: "join"
     mode: 0755
 
-- name: Init worker node
+- name: Init controller node
   shell: sh joincontroller 2>&1 | tee result
   register: init_controller

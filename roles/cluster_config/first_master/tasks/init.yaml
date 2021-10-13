@@ -14,14 +14,6 @@
       --pod-network-cidr "{{ pod_cidr }}" 2>&1 | tee result
   register: init_cluster
 
-- name : Get kubeadm join control node
-  when: init_cluster is succeeded
-  shell: cat result | grep -A 2 'kubeadm join' | head -n 3 | tee joincontroller
-
-- name : Get kubeadm join worker node
-  when: init_cluster is succeeded
-  shell: cat result | grep -A 2 'kubeadm join' | tail -n 2 | tee joinworker
-
 - name: Create Kubernetes config directory
   file:
     path: ".kube/"
