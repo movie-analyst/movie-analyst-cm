@@ -1,0 +1,7 @@
+---
+
+- name: Copy joincontroller to the controller
+  copy:
+    src: "joincontroller"
+    dest: "joincontroller"
+    mode: 0755

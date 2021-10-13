@@ -1,5 +1,5 @@
 ---
-- hosts: prueba
+- hosts: prueba:prueba2
   gather_facts: true
   become: yes
   become_method: sudo
@@ -8,3 +8,17 @@
     - install_docker
     - install_kubernetes
     - cluster_config/first_master
+
+- hosts: prueba
+  gather_facts: true
+  become: yes
+  become_method: sudo
+  roles:
+    - cluster_config/first_master
+
+ - hosts: prueba2
+  gather_facts: true
+  become: yes
+  become_method: sudo
+  roles:
+    - cluster_config/new_master  
