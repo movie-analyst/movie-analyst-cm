@@ -13,10 +13,12 @@
   gather_facts: true
   become: yes
   become_method: sudo
-  roles: cluster_config/first_master
+  roles:
+    - cluster_config/first_master
 
- - hosts: prueba2
+- hosts: prueba2
   gather_facts: true
   become: yes
   become_method: sudo
-  roles: cluster_config/new_master  
+  roles:
+    - cluster_config/new_master  
