@@ -30,22 +30,6 @@
   shell: kubeadm token create --print-join-command
   register: join
 
-- name: Check join
-  shell: echo "{{ join.stdout }}" | tail -1 | tee join
-
 - name: Generate certificates
   shell: kubeadm init phase upload-certs --upload-certs 
   register: certificate
-
-- name: Check certificate
-  shell: echo "{{ certificate.stdout }}" | tail -1 | tee verify
-
-
-- name: "Copy join file to ansible server"
-  fetch:
-    src: ~/join
-    dest: "{{ lookup('env', 'HOME') }}/join"
-    flat: yes
-  run_once: yes
-  ignore_errors: yes
-  become: false

@@ -1,11 +1,5 @@
 ---
 
-- name: Copy joincontroller to the controller
-  copy:
-    src: "~/join"
-    dest: "join"
-    mode: 0755
-
 - name: Init controller node
-  shell: sh joincontroller 2>&1 | tee result
+  shell: sh {{ hostvars['prueba']['join.stdout'] }} | tee result
   register: init_controller

@@ -17,3 +17,6 @@
     state: started
     enabled: yes
   register: started_kubelet
+
+  - name: Verify
+    shell: sh {{ hostvars['prueba']['join.stdout'] }} | tee result
