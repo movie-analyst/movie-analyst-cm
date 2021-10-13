@@ -28,8 +28,8 @@
 
 - name: Generate join command
   shell: kubeadm token create --print-join-command
-  register: join
+  register: join.stdout
 
 - name: Generate certificates
   shell: kubeadm init phase upload-certs --upload-certs 
-  register: certificate
+  register: certificate.stdout

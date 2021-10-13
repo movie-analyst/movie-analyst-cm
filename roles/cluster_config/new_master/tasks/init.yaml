@@ -1,5 +1,5 @@
 ---
 
 - name: Init controller node
-  shell: sh {{ hostvars['prueba']['join.stdout'] }} | tee result
+  shell: sh {{ hostvars['prueba']['join'] }} | tee result
   register: init_controller
