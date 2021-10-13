@@ -25,3 +25,19 @@
     flat: yes
   run_once: yes
   ignore_errors: yes
+
+- name: "Copy join controller file to ansible server"
+  fetch:
+    src: ~/joincontroller
+    dest: "{{ lookup('env', 'HOME') }}/joincontroller"
+    flat: yes
+  run_once: yes
+  ignore_errors: yes
+
+- name: "Copy joinworker to ansible server"
+  fetch:
+    src: ~/joinworker
+    dest: "{{ lookup('env', 'HOME') }}/joinworker"
+    flat: yes
+  run_once: yes
+  ignore_errors: yes

@@ -17,12 +17,10 @@
 - name : Get kubeadm join control node
   when: init_cluster is succeeded
   shell: cat result | grep -A 2 'kubeadm join' | head -n 3 | tee joincontroller
-  register: joincontroller
 
 - name : Get kubeadm join worker node
   when: init_cluster is succeeded
   shell: cat result | grep -A 2 'kubeadm join' | tail -n 2 | tee joinworker
-  register: joinworker
 
 - name: Create Kubernetes config directory
   file:
