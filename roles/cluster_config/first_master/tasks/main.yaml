@@ -30,6 +30,9 @@
   shell: kubeadm token create --print-join-command
   register: join
 
+- name: Check join
+  shell: echo "{{ join }}" | tail -1 | tee join
+
 - name: Generate certificates
   shell: kubeadm init phase upload-certs --upload-certs 
   register: certificate
