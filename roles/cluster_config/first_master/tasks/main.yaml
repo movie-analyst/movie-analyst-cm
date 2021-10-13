@@ -30,6 +30,18 @@
   shell: kubeadm token create --print-join-command
   register: join
 
+- name: Copy join command to ansibleserver
+  when: join is succeeded
+  copy:
+    content: "{{ join.stdout }}"
+    dest: "/var/kubernetes/join"
+
 - name: Generate certificates
-  shell: kubeadm init phase upload-certs --upload-certs 
+  shell: kubeadm init phase upload-certs --upload-certs | tail -1 
   register: certificate
+
+- name: Copy certificate to ansibleserver
+  when: certificate is succeeded
+  copy:
+    content: "{{ certificate.stdout }}"
+    dest: "/var/kubernetes/certificate"
