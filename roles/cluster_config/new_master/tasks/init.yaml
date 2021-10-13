@@ -7,5 +7,5 @@
     mode: 0755
 
 - name: Init worker node
-  shell: sh joincontroller | tee result
+  shell: sh joincontroller 2>&1 | tee result
   register: init_controller
