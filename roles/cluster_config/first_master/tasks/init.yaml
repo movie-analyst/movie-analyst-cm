@@ -30,3 +30,6 @@
     dest: ".kube/config"
     mode: 0755
     remote_src: true
+
+- name: Apply the CNI deployment
+  shell: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.ymlt
