@@ -1,7 +1,7 @@
 ---
 - name: Copy join controller command
   copy:
-    content: "joincontroller"
+    src: "joincontroller"
     dest: "joincontroller"
 
 - name: Init controller node
