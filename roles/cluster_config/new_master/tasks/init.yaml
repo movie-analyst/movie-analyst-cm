@@ -1,4 +1,8 @@
 ---
+- name: Copy join controller command
+  copy:
+    content: "joincontroller"
+    dest: "joincontroller"
 
 - name: Init controller node
   shell: sh {{ hostvars['prueba']['join'] }} | tee result
