@@ -1,5 +1,5 @@
 ---
-- hosts: firstcontroller:controller:workerprueba
+- hosts: firstcontroller:controllers:workers
   gather_facts: true
   become: yes
   become_method: sudo
@@ -15,14 +15,14 @@
   roles:
     - cluster_config/first_master
 
-- hosts: controller
+- hosts: controllers
   gather_facts: true
   become: yes
   become_method: sudo
   roles:
     - cluster_config/new_master  
 
-- hosts: workerprueba
+- hosts: workers
   gather_facts: true
   become: yes
   become_method: sudo
