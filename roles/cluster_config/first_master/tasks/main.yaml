@@ -37,7 +37,8 @@
     dest: "joinworker"
 
 - name: Copy join command to Ansible Server
-  copy:
+  when: join is succeeded
+  fetch:
     src: "joinworker"
     dest: "joinworker"
 
@@ -53,6 +54,6 @@
 
 - name: Copy file with the certificate to Ansible Server
   when: certificate is succeeded
-  copy:
+  fetch:
     src: "joincontroller"
     dest: "joincontroller"
