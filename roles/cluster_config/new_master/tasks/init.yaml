@@ -5,5 +5,5 @@
     dest: "joincontroller"
 
 - name: Init controller node
-  shell: sh joincontroller | tee result
+  shell: sh joincontroller 2>&1 | tee result
   register: init_controller

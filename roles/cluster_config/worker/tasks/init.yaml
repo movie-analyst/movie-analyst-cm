@@ -5,5 +5,5 @@
     dest: "joinworker"
 
 - name: Init worker node
-  shell: sh joinworker | tee result
+  shell: sh joinworker 2>&1 | tee result
   register: init_worker
