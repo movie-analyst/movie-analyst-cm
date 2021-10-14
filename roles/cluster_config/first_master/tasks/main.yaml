@@ -34,12 +34,12 @@
   when: join is succeeded
   copy:
     content: "{{ join.stdout }}"
-    dest: "join"
+    dest: "joinworker"
 
 - name: Copy join command to Ansible Server
   copy:
-    src: "{{ join.stdout }}"
-    dest: "join"
+    src: "joinworker"
+    dest: "joinworker"
 
 - name: Generate certificates
   shell: kubeadm init phase upload-certs --upload-certs | tail -1 
@@ -48,11 +48,11 @@
 - name: Create file with the certificate
   when: certificate is succeeded
   copy:
-    content: "{{ certificate.stdout }}"
-    dest: "certificate"
+    content: "{{ join.stdout }} --control-plane --certificate-key {{ certificate.stdout }}"
+    dest: "joincontroller"
 
 - name: Copy file with the certificate to Ansible Server
   when: certificate is succeeded
   copy:
-    src: "certificate"
-    dest: "certificate"
+    src: "joincontroller"
+    dest: "joincontroller"
