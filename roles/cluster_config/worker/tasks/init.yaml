@@ -1,9 +1,20 @@
 ---
+
+- name: Reset Kubernetes component
+  shell: kubeadm reset --force
+  become: true
+  register: reset_worker
+
 - name: Copy join worker command
   copy:
     src: "~/joinworker"
     dest: "joinworker"
 
+- name: Verify ip forward in 1
+  when: reset_worker is succeeded
+  shell: echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
+
 - name: Init worker node
+  when: reset_worker is succeeded
   shell: sh joinworker 2>&1 | tee result
   register: init_worker

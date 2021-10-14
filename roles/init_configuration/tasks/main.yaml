@@ -20,9 +20,6 @@
     state: present
     create: yes
 
-- name: Verify ip forward in 1
-  shell: echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
-
 - name: Restart sysctl
   shell: sysctl --system
   become: true

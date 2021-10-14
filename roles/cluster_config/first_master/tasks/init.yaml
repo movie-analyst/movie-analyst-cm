@@ -5,6 +5,10 @@
   become: true
   register: reset_cluster
 
+- name: Verify ip forward in 1
+  when: reset_cluster is succeeded
+  shell: echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
+
 - name: Init Kubernetes cluster
   when: reset_cluster is succeeded
   shell: |
