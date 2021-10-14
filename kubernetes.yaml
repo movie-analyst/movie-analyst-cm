@@ -27,4 +27,4 @@
   become: yes
   become_method: sudo
   roles:
-    - cluster_config/new_master  
+    - cluster_config/worker  
