@@ -5,5 +5,5 @@
     dest: "joincontroller"
 
 - name: Init controller node
-  shell: sh {{ hostvars['prueba']['join'] }} | tee result
+  shell: sh joincontroller | tee result
   register: init_controller

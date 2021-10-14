@@ -1,0 +1,9 @@
+---
+- name: Copy join worker command
+  copy:
+    src: "~/joinworker"
+    dest: "joinworker"
+
+- name: Init worker node
+  shell: sh joinworker | tee result
+  register: init_worker
