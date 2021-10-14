@@ -40,7 +40,10 @@
   when: join is succeeded
   fetch:
     src: "joinworker"
-    dest: "joinworker"
+    dest: "{{ lookup('env', 'HOME') }}/joinworker"
+    flat: yes
+  run_once: yes
+  ignore_errors: yes
 
 - name: Generate certificates
   shell: kubeadm init phase upload-certs --upload-certs | tail -1 
@@ -56,4 +59,7 @@
   when: certificate is succeeded
   fetch:
     src: "joincontroller"
-    dest: "joincontroller"
+    dest: "{{ lookup('env', 'HOME') }}/joincontroller"
+    flat: yes
+  run_once: yes
+  ignore_errors: yes
