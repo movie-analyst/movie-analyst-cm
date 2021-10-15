@@ -22,3 +22,7 @@
   when: reset_controller is succeeded
   shell: sh joincontroller 2>&1 | tee result
   register: init_controller
+
+- name: Restore loopback route lb
+  when: init_controller is succeeded
+  shell: ip route add local "{{ endpoint }}" dev ens4 proto 66 scope host
