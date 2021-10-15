@@ -14,6 +14,10 @@
   when: reset_controller is succeeded
   shell: echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 
+- name: Delete loopback route lb
+  when: reset_controller is succeeded
+  shell: ip route del local "{{ endpoint }}" dev ens4
+
 - name: Init controller node
   when: reset_controller is succeeded
   shell: sh joincontroller 2>&1 | tee result
