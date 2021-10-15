@@ -32,5 +32,5 @@
     remote_src: true
 
 - name: Apply the CNI deployment
-  shell: kubectl apply -f https://raw.githubusercontent.com/movie-analyst/movie-analyst-cm/master/kube-flannel.yaml
+  shell: kubectl apply -f https://github.com/flannel-io/flannel/blob/v0.14.0/Documentation/kube-flannel.yml
   become: false
